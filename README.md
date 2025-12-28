@@ -427,7 +427,7 @@ It is used only to explain why a product appeared in the search results.
   - Product attributes (price, rating, category)  
   - Individual ranking signals (semantic score, click, cart, purchase)  
 
-The LLM generates a 1–2 sentence factual explanation describing the most influential reason for ranking.
+The LLM generates a 1–2 sentence factual explanation describing “Why was this product shown for this query?” and the most influential reason for ranking.
 
 **Prompt design highlights:**
 - Explicit instruction to:
