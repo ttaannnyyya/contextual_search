@@ -455,7 +455,7 @@ The LLM generates a 1–2 sentence factual explanation describing the most influ
 ## Sample Dataset
 
 The project uses a synthetically generated dataset to simulate a realistic e-commerce product catalog.
-    **Dataset File**- products_final_clean.csv
+- **Dataset File**- products_final_clean.csv
 - **Categories:** Shoes, Glasses, Electronics, Watches, Sportswear, Accessories, Footwear  
 - **Brands:**  
   Nike, Adidas, Puma, Reebok, Skechers, Lenskart, RayBan, Titan, Fastrack, Boat, Sony, JBL, Samsung, Casio, Fossil, Apple, HRX, Wildcraft, Skybags, American Tourister, Bata, Woodland, RedTape, Campus  
