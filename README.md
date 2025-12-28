@@ -75,7 +75,7 @@ This structure ensures that:
 
 The frontend enables end-to-end testing of search, ranking, and event tracking through an interactive UI.
 
-
+---
 
 ### 2. API Layer (FastAPI)
 
@@ -121,6 +121,7 @@ This separation avoids overloading a single datastore and mirrors real productio
 
 The event layer ensures user interactions are recorded without impacting API latency and supports learning-based ranking.
 
+---
 
 ### 6. AI / ML Layer
 
@@ -137,7 +138,6 @@ The event layer ensures user interactions are recorded without impacting API lat
 ### A. Product Ingestion Flow
 
 ```
-
 CSV / JSON File
 ↓
 Ingestion API (/ingest)
@@ -149,7 +149,6 @@ SQL DB (structured fields)
 Embedding Generation
 ↓
 FAISS Vector Store
-
 ```
 
 This flow ensures ingestion is:
@@ -162,7 +161,6 @@ This flow ensures ingestion is:
 ### B. Search & Ranking Flow
 
 ```
-
 User Query
 ↓
 Query Embedding
@@ -178,7 +176,6 @@ Behavior-aware Re-ranking
 LLM Explanation Generation
 ↓
 Search Response
-
 ```
 
 This staged approach avoids premature filtering and preserves semantic relevance.
@@ -188,7 +185,6 @@ This staged approach avoids premature filtering and preserves semantic relevance
 ### C. User Event Flow (Asynchronous)
 
 ```
-
 User Action (click / cart / purchase)
 ↓
 /event API
@@ -198,7 +194,6 @@ Redis Stream (non-blocking)
 Event Consumer Service
 ↓
 Behavior Counters Updated in DB
-
 ```
 
 This ensures that user analytics never block the main search experience.
@@ -357,7 +352,6 @@ These signals are normalized to avoid bias toward popular products.
 ### 3. Re-Ranking Formula
 
 ```
-
 final_score = (
 0.55 * semantic_score
 + 0.20 * norm_buy
@@ -365,7 +359,6 @@ final_score = (
 + 0.10 * norm_click
 - 0.10 * norm_bounce
 )
-
 ```
 
 **Design rationale:**
@@ -481,10 +474,8 @@ For best results, please use search queries that are aligned with the listed cat
 ### 1. Clone the Repository
 
 ```
-
 git clone https://github.com/ttaannnyyya/contextual_search.git
 cd contextual_search
-
 ```
 
 ---
@@ -492,16 +483,12 @@ cd contextual_search
 ### 2. Create & Activate Virtual Environment (Recommended)
 
 ```
-
 python -m venv venv
-
 ```
 
 **Windows:**
 ```
-
 venv\Scripts\activate
-
 ```
 
 ---
@@ -509,9 +496,7 @@ venv\Scripts\activate
 ### 3. Install Dependencies
 
 ```
-
 pip install -r requirements.txt
-
 ```
 
 ---
@@ -521,9 +506,7 @@ pip install -r requirements.txt
 Create a `.env` file in the project root and add:
 
 ```
-
 OPENROUTER_API_KEY=your_openrouter_api_key
-
 ```
 
 ---
@@ -534,9 +517,7 @@ This project uses Memurai (Redis-compatible) on Windows.
 Ensure Memurai is running on:
 
 ```
-
 localhost:6379
-
 ```
 
 Memurai must remain running while the application is active.
@@ -548,9 +529,7 @@ Memurai must remain running while the application is active.
 Open a separate terminal and run:
 
 ```
-
 python event_consumer.py
-
 ```
 
 - Runs continuously  
@@ -565,9 +544,7 @@ python event_consumer.py
 Open another terminal:
 
 ```
-
 uvicorn main:app --port 8002
-
 ```
 
 - Starts the FastAPI backend  
@@ -583,9 +560,7 @@ http://127.0.0.1:8002/docs
 Open a new terminal:
 
 ```
-
 streamlit run frontend.py
-
 ```
 
 - Launches the Streamlit-based search UI  
@@ -639,5 +614,4 @@ All the above operations can also be performed using the Streamlit frontend:
   - Add to Cart  
   - Purchase  
 - User actions are captured as events and persisted to the database via the event consumer.
-```
-
+  
